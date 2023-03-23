@@ -34,6 +34,7 @@ int print_f(char *s, ...)
         s++;
     }
     putchar('\n');
+    va_end(args);
     return (0);
 }
 
