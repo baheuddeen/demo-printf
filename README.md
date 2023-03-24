@@ -1,3 +1,0 @@
-# demo-printf
-printf
-الغلابة
