@@ -18,5 +18,6 @@ string_format _get_format(char *);
 int _print_string(va_list);
 int _print_char(va_list);
 int _print_int (va_list, string_format);
+int _print_int_digits(string_format, int, int, int, int);
 
 #endif
