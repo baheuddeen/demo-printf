@@ -5,7 +5,9 @@
 string_format _get_format(char *s)
 {
 	int i = 1;
-	string_format format = {};
+	string_format format = {
+		'\0',0,0,0,0,0,0,0
+	};
 
 	if (*s == '+')
 	{

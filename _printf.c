@@ -23,8 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (temp_format[i] == '%')
 		{
-			i++;
-			string_format format = _get_format(temp_format + i);
+			string_format format = _get_format(temp_format + (++i));
 
 			printed_char_counter += _print_format(args, format);
 			i += format.length;

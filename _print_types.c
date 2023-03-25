@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "main.h"
 #include <string.h>
+#include <stdlib.h>
 
 int _print_format(va_list args, string_format format)
 {
@@ -89,7 +90,6 @@ int _print_int(va_list args, string_format format)
 int _print_unsigned_int(va_list args, string_format format)
 {
 	unsigned int x = va_arg(args, unsigned int);
-	int is_negative = 0;
 
 	if (format.add_sign == 1)
 	{
@@ -104,7 +104,6 @@ int _print_unsigned_int(va_list args, string_format format)
 int _print_pointer(va_list args, string_format format)
 {
 	unsigned long int x = va_arg(args, unsigned long int);
-	int is_negative = 0;
 
 	if (format.add_sign == 1)
 	{
