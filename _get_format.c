@@ -27,7 +27,6 @@ string_format _get_format(char *s)
 		s++;
 		i++;
 	}
-
 	format.type = *s;
 	format.length = i;
 	return (format);
