@@ -34,7 +34,6 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	printf("\n");
 	free(temp_format);
 	return (printed_char_counter);
 }

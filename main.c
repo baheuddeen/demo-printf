@@ -42,5 +42,16 @@ int main(void)
     printf("Len:[%d]\n", len2);
     _printf("Unknown:[%r]\n");
     printf("Unknown:[%r]\n");
+
+    _printf("formated int[%8i]\n", 152);
+    printf("formated int:[%8i]\n",  152);
+    _printf("formated int:[%08i]\n", 152);
+    printf("formated int:[%08i]\n",  152);
+    _printf("formated int:[%+08i]\n", 152);
+    printf("formated int:[%+08i]\n",  152);
+    _printf("formated int:[%+8i]\n", 152);
+    printf("formated int:[%+8i]\n",  152);
+    _printf("formated int:[%08i]\n", -152);
+    printf("formated int:[%08i]\n",  -152);
     return (0);
 }

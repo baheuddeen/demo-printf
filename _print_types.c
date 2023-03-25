@@ -15,24 +15,24 @@ int _print_format(va_list args, string_format format)
 	case 'i':
 	case 'd':
 		format.base = 10;
-		return (_print_int(args, format));	
+		return (_print_int(args, format));
 	case 'u':
 		format.base = 10;
 		return (_print_unsigned_int(args, format));
 	case 'o':
 		format.base = 8;
-		return (_print_unsigned_int(args, format));	
+		return (_print_unsigned_int(args, format));
 	case 'x':
 		format.base = 16;
-		return (_print_unsigned_int(args, format));	
+		return (_print_unsigned_int(args, format));
 	case 'p':
 		format.base = 16;
 		format.is_pointer = 1;
-		return (_print_pointer(args, format));	
+		return (_print_pointer(args, format));
 	case 'X':
 		format.base = 16;
 		format.hex_upper = 1;
-		return (_print_unsigned_int(args, format));	
+		return (_print_unsigned_int(args, format));
 	case '%':
 		return (_putchar('%'));
 	default:
@@ -62,7 +62,6 @@ int _print_char(va_list args)
 	return (_putchar(c));
 }
 
-
 int _print_int(va_list args, string_format format)
 {
 	int x = va_arg(args, int);
@@ -87,10 +86,9 @@ int _print_int(va_list args, string_format format)
 		is_negative));
 }
 
-
 int _print_unsigned_int(va_list args, string_format format)
 {
-	unsigned int x = va_arg(args,unsigned int);
+	unsigned int x = va_arg(args, unsigned int);
 	int is_negative = 0;
 
 	if (format.add_sign == 1)
@@ -102,11 +100,10 @@ int _print_unsigned_int(va_list args, string_format format)
 		format,
 		x));
 }
-
 
 int _print_pointer(va_list args, string_format format)
 {
-	unsigned long int x = va_arg(args,unsigned long int);
+	unsigned long int x = va_arg(args, unsigned long int);
 	int is_negative = 0;
 
 	if (format.add_sign == 1)
@@ -119,9 +116,7 @@ int _print_pointer(va_list args, string_format format)
 		x));
 }
 
-
-
-int _print_int_digits(string_format format,long int x, int is_negative)
+int _print_int_digits(string_format format, long int x, int is_negative)
 {
 	int counter = 0;
 	char *number_string = decimal_to_string(x, format);
@@ -156,11 +151,12 @@ int _print_int_digits(string_format format,long int x, int is_negative)
 		counter += _putchar(number_string[i]);
 		i++;
 	}
+	free(number_string);
 	return (counter);
 }
 
 int _print_unsigned_int_digits(
-	string_format format,unsigned long int x)
+	string_format format, unsigned long int x)
 {
 	int counter = 0;
 	char *number_string = unsigned_decimal_to_string(x, format);
@@ -195,12 +191,12 @@ int _print_unsigned_int_digits(
 		counter += _putchar('0');
 		counter += _putchar('x');
 	}
-	
 
 	while (i < digits)
 	{
 		counter += _putchar(number_string[i]);
 		i++;
 	}
+	free(number_string);
 	return (counter);
 }
