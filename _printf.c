@@ -35,7 +35,6 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	printf("\n");
-	printf("length is: %d\n", printed_char_counter);
 	free(temp_format);
-	return (0);
+	return (printed_char_counter);
 }

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "main.h"
 
+
 int _print_format(va_list args, string_format format)
 {
 	switch (format.type)
@@ -11,10 +12,18 @@ int _print_format(va_list args, string_format format)
 	case 's':
 		return (_print_string(args));
 	case 'i':
-		return (_print_int(args, format));
-
+	case 'd':
+		return (_print_int(args, format));	
+	case 'u':
+		return (_print_unsigned_int(args, format));
+	case 'p':
+		return (_print_pointer(args, format));	
+	case '%':
+		return (_putchar('%'));
 	default:
-		return (0);
+		_putchar('%');
+		_putchar(format.type);
+		return (2);
 	}
 }
 
@@ -38,10 +47,12 @@ int _print_char(va_list args)
 	return (_putchar(c));
 }
 
+
 int _print_int(va_list args, string_format format)
 {
 	int x = va_arg(args, int);
-	int digits = 1, power = 10;
+	int digits = 1;
+	long int power = 10;
 	int is_negative = 0;
 
 	if (x < 0)
@@ -70,8 +81,37 @@ int _print_int(va_list args, string_format format)
 		power,
 		is_negative));
 }
+
+
+
+int _print_unsigned_int(va_list args, string_format format)
+{
+	unsigned int x = va_arg(args,unsigned int);
+	int digits = 1;
+	long int power = 10;
+	int is_negative = 0;
+
+	if (format.add_sign == 1)
+	{
+		format.number_of_digits--;
+	}
+
+	while (x / power)
+	{
+		digits++;
+		power *= 10;
+	}
+
+	return (_print_unsigned_int_digits(
+		format,
+		x,
+		digits,
+		power,
+		is_negative));
+}
+
 int _print_int_digits(
-	string_format format, int x, int digits, int power, int is_negative)
+	string_format format, int x, int digits,long power, int is_negative)
 {
 	int counter = 0;
 
@@ -107,3 +147,44 @@ int _print_int_digits(
 	}
 	return (counter);
 }
+
+
+
+int _print_unsigned_int_digits(
+	string_format format, unsigned int x, int digits,long int power, int is_negative)
+{
+	int counter = 0;
+
+	if (format.number_of_digits > 0 && !format.fill_with_zeros)
+	{
+		while (format.number_of_digits > digits)
+		{
+			counter += _putchar(' ');
+			format.number_of_digits--;
+		}
+	}
+
+	if (format.add_sign)
+	{
+		counter += _putchar(is_negative ? '-' : '+');
+	}
+
+	if (format.fill_with_zeros)
+	{
+		while (format.number_of_digits > digits)
+		{
+			counter += _putchar('0');
+			format.number_of_digits--;
+		}
+	}
+
+	power /= 10;
+	while (power)
+	{
+		counter += _putchar((x / power) + '0');
+		x %= power;
+		power /= 10;
+	}
+	return (counter);
+}
+
