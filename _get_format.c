@@ -6,7 +6,7 @@
  * @s: pointer to the format.
  * Return: the formater type.
  */
-format_type _get_format(char *s)
+format_type _get_format(const char *s)
 {
 	int i = 1;
 	format_type format = {

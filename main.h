@@ -32,11 +32,11 @@ typedef struct format_type
 } format_type;
 
 int _strlen(const char *str);
-char *_strcpy(char *dest, char const *src);
+char *_strcpy(char *dest, const char *src);
 void _push_char(char *s, char c);
 int _printf(const char *, ...);
 void _add_format(char *, va_list, format_type);
-format_type _get_format(char *);
+format_type _get_format(const char *);
 void _add_string(char *, va_list);
 void _add_char(char *, va_list);
 void _add_int(char *, va_list, format_type);
