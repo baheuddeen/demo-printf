@@ -1,13 +1,16 @@
 #include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
 
+/**
+ * _get_format - get the string formater type.
+ * @s: pointer to the format.
+ * Return: the formater type.
+ */
 format_type _get_format(char *s)
 {
 	int i = 1;
 	format_type format = {
-		'\0',0,0,0,0,0,0,0
-	};
+		'\0', 0, 0, 0, 0, 0, 0, 0};
 
 	if (*s == '+')
 	{

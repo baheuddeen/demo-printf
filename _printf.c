@@ -1,6 +1,4 @@
 #include <stdarg.h>
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "main.h"
@@ -13,22 +11,21 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int length = strlen(format) + 1;
+	int length = _strlen(format) + 1;
 	int i = 0;
 	char *temp_format = NULL, *buffer = NULL;
-	int printed_char_counter = 0;
 
 	temp_format = malloc(length + 1);
 	if (!temp_format)
 		return (-1);
-	buffer = calloc(1024, 1);
+	buffer = calloc(BUFFER_LENGTH, 1);
 	if (!buffer)
 	{
 		free(temp_format);
 		return (-1);
 	}
 
-	strcpy(temp_format, format);
+	_strcpy(temp_format, format);
 	va_start(args, format);
 	while (temp_format[i])
 	{
@@ -40,7 +37,6 @@ int _printf(const char *format, ...)
 			i += format.length;
 		}
 		_push_char(buffer, temp_format[i]);
-		printed_char_counter++;
 		i++;
 	}
 
@@ -51,5 +47,5 @@ int _printf(const char *format, ...)
 	va_end(args);
 	free(temp_format);
 	free(buffer);
-	return (printed_char_counter);
+	return (i);
 }

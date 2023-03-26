@@ -1,19 +1,21 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * _putchar - print char
- *
- * @c: char to print.
- *
- * Return: 0 (success)
+ * _push_char - push char after the last char in a buffer.
+ * @buffer: buffer to push at.
+ * @c: char to push.
  */
 
-int _push_char(char *s, char c)
+void _push_char(char *buffer, char c)
 {
-    while (*s)
-    {
-        s++;
-    }
-    *s = c;
-	return (1);
+	int i = 0;
+
+	for (i = 0; buffer[i]; i++)
+		;
+	if (i >= BUFFER_LENGTH)
+	{
+		exit(90);
+	}
+	buffer[i] = c;
 }
