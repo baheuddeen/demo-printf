@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "main.h"
 
 /**
@@ -14,8 +15,18 @@ int _printf(const char *format, ...)
 	va_list args;
 	int length = strlen(format) + 1;
 	int i = 0;
-	char *temp_format = malloc(length);
+	char *temp_format = NULL, *buffer = NULL;
 	int printed_char_counter = 0;
+
+	temp_format = malloc(length + 1);
+	if (!temp_format)
+		return (-1);
+	buffer = calloc(1024, 1);
+	if (!buffer)
+	{
+		free(temp_format);
+		return (-1);
+	}
 
 	strcpy(temp_format, format);
 	va_start(args, format);
@@ -23,16 +34,22 @@ int _printf(const char *format, ...)
 	{
 		if (temp_format[i] == '%')
 		{
-			string_format format = _get_format(temp_format + (++i));
+			format_type format = _get_format(temp_format + (++i));
 
-			printed_char_counter += _print_format(args, format);
+			_add_format(buffer, args, format);
 			i += format.length;
 		}
-		_putchar(temp_format[i]);
+		_push_char(buffer, temp_format[i]);
 		printed_char_counter++;
 		i++;
 	}
+
+	for (i = 0; buffer[i]; i++)
+	{
+		write(1, buffer + i, 1);
+	}
 	va_end(args);
 	free(temp_format);
+	free(buffer);
 	return (printed_char_counter);
 }

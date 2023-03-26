@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "main.h"
 
 /**
@@ -9,7 +8,12 @@
  * Return: 0 (success)
  */
 
-int _putchar(char c)
+int _push_char(char *s, char c)
 {
-	return (write(1, &c, 1));
+    while (*s)
+    {
+        s++;
+    }
+    *s = c;
+	return (1);
 }

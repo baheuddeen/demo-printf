@@ -2,10 +2,10 @@
 #include "main.h"
 #include <stdio.h>
 
-string_format _get_format(char *s)
+format_type _get_format(char *s)
 {
 	int i = 1;
-	string_format format = {
+	format_type format = {
 		'\0',0,0,0,0,0,0,0
 	};
 

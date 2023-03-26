@@ -40,7 +40,7 @@ int main(void)
     len2 = printf("Percent:[%%]\n");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-    _printf("formated int[%8i]\n", 152);
+    _printf("formated int:[%8i]\n", 152);
     printf("formated int:[%8i]\n",  152);
     _printf("formated int:[%08i]\n", 152);
     printf("formated int:[%08i]\n",  152);

@@ -2,7 +2,7 @@
 #include "main.h"
 #include <stdio.h>
 
-char *decimal_to_string(long int x, string_format format)
+char *decimal_to_string(long int x, format_type format)
 {
     char *bin;
     long int temp_x = x;
@@ -49,7 +49,7 @@ char get_digit_value(long int x, int base, int digit, int hex_upper)
 }
 
 
-char *unsigned_decimal_to_string(unsigned long int x, string_format format)
+char *unsigned_decimal_to_string(unsigned long int x, format_type format)
 {
     char *bin;
     long int temp_x = x;
